@@ -1,0 +1,82 @@
+﻿@model demo.Models.User
+
+<form action="~/User/AddUser" method="post">
+
+    <div class="modal-body">
+        <div class="mb-3">
+
+
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">First Name:</label>
+                <input asp-for="@Model.FirstName" name="FirstName" type="text" class="form-control" id="aFirstName">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Last Name:</label>
+                <input asp-for="@Model.LastName" name="LastName" type="text" class="form-control" id="aLastName">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Phone Number:</label>
+                <input asp-for="@Model.Phone" type="text" class="form-control" id="aPhoneNo">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Email Address:</label>
+                <input asp-for="@Model.Email" type="text" class="form-control" id="aEmail">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Password:</label>
+                <input asp-for="@Model.Password" type="text" class="form-control" id="apassword">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">StreetAddress:</label>
+                <input asp-for="@Model.StreetAddress" type="text" class="form-control" id="apassword">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">UserName:</label>
+                <input asp-for="@Model.UserName" type="text" class="form-control" id="apassword">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">City:</label>
+                <input asp-for="@Model.City" type="text" class="form-control" id="apassword">
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">State:</label>
+                <input asp-for="@Model.State" type="text" class="form-control" id="apassword">
+
+            </div>
+            @*             <div class="col">
+                <label for="recipient-name" class="col-form-label">Country:</label>
+                <select asp-for=" @Model.user.CountryId" class="form-select" id="edropcountry" aria-label="default select example">
+                <option selected>select your country</option>
+                </select>
+                </div>
+                <div class="col">
+                <label for="recipient-name" class="col-form-label">City:</label>
+                <select asp-for="@Model.user.CityId" class="form-select" id="edropcity" aria-label="Default select example">
+                <option selected>Select your City</option>
+                </select>
+                </div>
+                <div>
+                <label for="recipient-name" class="col-form-label"> Status:</label>
+                <select asp-for="user.Status" class="form-select" aria-label="Default select example" id="estatus" required="">
+                <option selected>Select Status</option>
+                <option value="true">Active</option>
+                <option value="false">In-Active</option>
+                </select>
+
+                </div>*@
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button"><span style="color: gray;">Close</span></button>
+        <button type="submit"><span style="color: #F88634;">Save</span></button>
+    </div>
+</form>

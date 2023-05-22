@@ -1,0 +1,12 @@
+D:\demo\demo\demo.entities\bin\Debug\net6.0\demo.entities.deps.json
+D:\demo\demo\demo.entities\bin\Debug\net6.0\demo.entities.dll
+D:\demo\demo\demo.entities\bin\Debug\net6.0\ref\demo.entities.dll
+D:\demo\demo\demo.entities\bin\Debug\net6.0\demo.entities.pdb
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.csproj.AssemblyReference.cache
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.AssemblyInfoInputs.cache
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.AssemblyInfo.cs
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.csproj.CoreCompileInputs.cache
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.dll
+D:\demo\demo\demo.entities\obj\Debug\net6.0\ref\demo.entities.dll
+D:\demo\demo\demo.entities\obj\Debug\net6.0\demo.entities.pdb

@@ -1,0 +1,54 @@
+﻿@model demo.Models.MainModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">UserId</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">StreetAddress</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Password</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model.UsersList != null && Model.UsersList.Count > 0)
+                {
+                    foreach (var item in Model.UsersList)
+                    {
+                        <tr>
+
+                            <td>@item.UserId</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phone</td>
+                            <td>@item.StreetAddress</td>
+                            <td>@item.City</td>
+                            <td>@item.State</td>
+                            <td>@item.UserName</td>
+                            <td>@item.Password</td>
+
+                        </tr>
+                    }
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>
+ <a style="text-align: end;" onclick="return location.href='@Url.Action("UserAdd","User" )'"  class="nav-link align-middle px-0"><p>UserAdd</p></a>

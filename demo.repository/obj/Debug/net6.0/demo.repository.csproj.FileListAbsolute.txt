@@ -1,0 +1,12 @@
+D:\demo\demo\demo.repository\bin\Debug\net6.0\demo.repository.deps.json
+D:\demo\demo\demo.repository\bin\Debug\net6.0\demo.repository.dll
+D:\demo\demo\demo.repository\bin\Debug\net6.0\ref\demo.repository.dll
+D:\demo\demo\demo.repository\bin\Debug\net6.0\demo.repository.pdb
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.csproj.AssemblyReference.cache
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.AssemblyInfoInputs.cache
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.AssemblyInfo.cs
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.csproj.CoreCompileInputs.cache
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.dll
+D:\demo\demo\demo.repository\obj\Debug\net6.0\ref\demo.repository.dll
+D:\demo\demo\demo.repository\obj\Debug\net6.0\demo.repository.pdb

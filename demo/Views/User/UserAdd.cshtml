@@ -1,6 +1,6 @@
 ﻿@model demo.Models.User
 
-<form action="~/User/AddUser" method="post">
+<form action="~/User/AddUser" method="post" id="userform">
 
     <div class="modal-body">
         <div class="mb-3">
@@ -9,47 +9,68 @@
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">First Name:</label>
                 <input asp-for="@Model.FirstName" name="FirstName" type="text" class="form-control" id="aFirstName">
+                <p><span asp-validation-for="@Model.FirstName" class="text-danger"></span></p>
 
             </div>
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Last Name:</label>
                 <input asp-for="@Model.LastName" name="LastName" type="text" class="form-control" id="aLastName">
+                <p><span asp-validation-for="LastName" class="text-danger"></span></p>
 
             </div>
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Phone Number:</label>
                 <input asp-for="@Model.Phone" type="text" class="form-control" id="aPhoneNo">
+                <p><span asp-validation-for="Phone" class="text-danger"></span></p>
 
             </div>
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Email Address:</label>
                 <input asp-for="@Model.Email" type="text" class="form-control" id="aEmail">
+                <p><span asp-validation-for="Email" class="text-danger"></span></p>
 
             </div>
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Password:</label>
                 <input asp-for="@Model.Password" type="text" class="form-control" id="apassword">
+                <p><span asp-validation-for="Password" class="text-danger"></span></p>
 
             </div>
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">StreetAddress:</label>
-                <input asp-for="@Model.StreetAddress" type="text" class="form-control" id="apassword">
+                <input asp-for="@Model.StreetAddress" name="StreetAddress" type="text" class="form-control" >
+                <p><span asp-validation-for="StreetAddress" class="text-danger"></span></p>
 
             </div>
             <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">UserName:</label>
-                <input asp-for="@Model.UserName" type="text" class="form-control" id="apassword">
+                <input asp-for="@Model.UserName"  type="text" class="form-control" >
+                <p><span asp-validation-for="UserName" class="text-danger"></span></p>
 
             </div>
-            <div class="mb-3">
+            @*            <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">City:</label>
-                <input asp-for="@Model.City" type="text" class="form-control" id="apassword">
+                <input asp-for="@Model.CityId" type="text" class="form-control" id="apassword">
 
-            </div>
-            <div class="mb-3">
+
+                </div>*@
+            @*            <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">State:</label>
-                <input asp-for="@Model.State" type="text" class="form-control" id="apassword">
+                <input asp-for="@Model.StateId" type="text" class="form-control" id="apassword">
+                <p ><span asp-validation-for="StateId" class="text-danger"></span></p>
 
+                </div>*@
+            <div class="col">
+                <label for="recipient-name" class="col-form-label">State:</label>
+                <select asp-for=" @Model.StateId" class="form-select" id="statedropdown" aria-label="default select example">
+                    <option selected>select your State</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="recipient-name" class="col-form-label">City</label>
+                <select asp-for=" @Model.CityId" class="form-select" id="citydropdown" aria-label="default select example">
+                    <option selected>select your City</option>
+                </select>
             </div>
             @*             <div class="col">
                 <label for="recipient-name" class="col-form-label">Country:</label>
@@ -80,3 +101,120 @@
         <button type="submit"><span style="color: #F88634;">Save</span></button>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+
+
+<script>
+
+
+        $(document).ready(function() {
+        $.ajax({
+            url: '/User/listOfState',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var stateDropdown = $('#statedropdown');
+                stateDropdown.empty();
+                stateDropdown.append($('<option>').text('Select your State').attr('value', ''));
+                $.each(data, function(index, state) {
+                    stateDropdown.append($('<option>').text(state.stateName).attr('value', state.stateId));
+                });
+            },
+            error: function() {
+                alert('Error occurred while retrieving states.');
+            }
+        });
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function() {
+
+        $('#statedropdown').change(function() {
+            var stateId = $(this).val();
+
+
+            $.ajax({
+                url: '/User/GetCities',
+                type: 'GET',
+                data: { stateId: stateId },
+                success: function(cities) {
+
+                    $('#citydropdown').empty();
+
+
+                    $.each(cities, function(index, city) {
+                        $('#citydropdown').append($('<option></option>').val(city.cityId).text(city.cityName));
+                    });
+                },
+                error: function() {
+
+                    alert('Error occurred while retrieving cities.');
+                }
+            });
+        });
+    });
+
+
+
+</script>
+<script>
+
+
+    jQuery.validator.addMethod("phoneUS", function(phoneNumber, element) {
+        phoneNumber = phoneNumber.replace(/\s+/g, "");
+        return this.optional(element) || phoneNumber.match(/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/);
+    }, "Please enter a valid phone number.");
+
+    jQuery(document).ready(function($) {
+        $('#userform').validate({
+            rules: {
+                FirstName: "required",
+                LastName: "required",
+                UserName: "required",
+                Phone: {
+                    required: true,
+                    phoneUS: true
+                },
+                Email:{
+                    required: true,
+                    email:true
+
+                },
+                Password:{
+                     required: true,
+                     minlength:6
+                },
+                StreetAddress:{
+                    required: true,
+                      maxlength:150
+                }
+            },
+            messages: {
+                            FirstName: "First Name is required",
+                            LastName: "Last Name is required",
+                            UserName: "User Name is required",
+                            Phone: {
+                                required: "Phone is required"
+                            },
+                           Email:"Email is required",
+                           Password:{
+                                required: "Password is required",
+                                minlength:"Password must be at least 6 characters long "
+                           },
+                            
+                           StreetAddress:{
+                            required: "StreetAddress is required",
+                            maxlength:"StreetAddress must below  150 characters "
+                       }
+               
+                    }
+        });
+    });
+
+
+</script>

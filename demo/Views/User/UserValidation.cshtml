@@ -1,0 +1,267 @@
+﻿@using System.Text.RegularExpressions;
+
+<form method="post">
+
+    <div class="modal-body">
+        <div class="mb-3">
+
+
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">First Name:</label>
+                <input name="FirstName" type="text" class="form-control" id="aFirstName">
+                <span style="color:red;" id="aFirstNameError"></span>
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Last Name:</label>
+                <input name="LastName" type="text" class="form-control" id="aLastName">
+                <span style="color:red;" id="aLastNameError"></span>
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Phone Number:</label>
+                <input type="number" class="form-control" id="aPhoneNo">
+                <span style="color:red;" id="aPhoneNoError" class="error-message"></span>
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Email Address:</label>
+                <input type="text" class="form-control" id="aEmail">
+                <span style="color:red;" id="aEmailError" class="error-message"></span>
+
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Password:</label>
+                <input type="text" class="form-control" id="aPassword">
+                <span style="color:red;" id="aPasswordError" class="error-message"></span>
+                <span style="color:green;" id="strongPasswordError" class="error-message"></span>
+
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">StreetAddress:</label>
+                <input name="StreetAddress" type="text" class="form-control" id="Street">
+                <span style="color:red;" id="StreetError"></span>
+
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">UserName:</label>
+                <input type="text" class="form-control" id="Username">
+                <span style="color:red;" id="UsernameError"></span>
+
+            </div>
+
+            <div class="col">
+                <label for="recipient-name" class="col-form-label">State:</label>
+                <select class="form-select" id="statedropdown" aria-label="default select example">
+                </select>
+            </div>
+            <div class="col">
+                <label for="recipient-name" class="col-form-label">City</label>
+                <select class="form-select" id="citydropdown" aria-label="default select example">
+                </select>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button"><span style="color: gray;">Close</span></button>
+        <button id="saveuser" type="submit"><span style="color: #F88634;">Save</span></button>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+            $(document).ready(function(e){
+                $("#aFirstName").on("keyup", function(e){
+                    var firstname = $(this).val();
+                     var ferror = $('#aFirstNameError');
+                     if (firstname === '')
+                            {
+                                 ferror.text('First Name is required');
+                            }
+                    else
+                         {
+                             ferror.text('');
+                         }
+                })
+
+                $("#aLastName").on("keyup", function(e){
+                    var lastname = $(this).val();
+                    var lerror = $('#aLastNameError');
+                    if (lastname === '')
+                                {
+                                    lerror.text('Last Name is required');
+                                }
+                        else
+                            {
+                                 lerror.text('');
+                            }
+
+                })
+
+                $("#Street").on("keyup", function(e){
+                    var streetaddress = $(this).val();
+                    var serror = $('#StreetError');
+                    if (streetaddress === '')
+                                    {
+                                         serror.text('Streetaddress is required');
+                                    }
+                     else
+                            {
+                                 serror.text('');
+                            }
+                })
+
+                $('#Username').on("keyup",function(e){
+                    var username = $(this).val();
+                    var uerror = $('#UsernameError');
+                    if (username === '')
+                            {
+                                 uerror.text('Username is required');
+                            }
+                             else
+                                {
+                                     uerror.text('');
+                                }
+                })
+
+                $('#aPhoneNo').on('keyup', function() {
+                    var phonenumber = $(this).val();
+                    var perror = $('#aPhoneNoError');
+
+                    if (phonenumber === '')
+                            {
+                                perror.text('Phone Number is required');
+                            }
+                    else if (!phonelength(phonenumber))
+                            {
+                                perror.text('Invalid Phone Number');
+                            }
+                    else
+                            {
+                                perror.text('');
+                            }
+                })
+
+
+
+             $('#aPassword').on('keyup', function() {
+                    var password = $(this).val();
+                    var paerror = $('#aPasswordError');
+                    var strongPasswordError = $('#strongPasswordError');
+
+
+                    if (password === '') {
+                        paerror.text('Password is required');
+
+                       }
+
+                    else {
+                        paerror.text('');
+                        if (password.length >= 6 && containsUppercase(password) && containsLowercase(password) && containsSpecialCharacter(password)) {
+                            strongPasswordError.text('Strong Password');
+                        } else if (password.length >= 6 && containsUppercase(password) && containsLowercase(password)) {
+                            
+                                paerror.text('Medium Password');
+                        } else {
+                            
+                                paerror.text('Weak Password');
+                        }
+                    }
+                });
+            })
+    
+            
+
+
+
+    function containsUppercase(password) {
+        return /[A-Z]/.test(password);
+    }
+
+    function containsLowercase(password) {
+        return /[a-z]/.test(password);
+    }
+
+    function containsSpecialCharacter(password) {
+        return /[!#$%^/&*(),.?":{}|<>]/.test(password);
+    }
+
+   
+
+
+            function  phonelength(phonenumber) {
+
+            if (phonenumber.length !== 10) {
+                return false;
+            }
+
+            return true;
+        }
+
+
+ $(document).ready(function() {
+    $("#saveuser").on("click", function(e) {
+        e.preventDefault(); 
+
+        var firstname = $("#aFirstName").val();
+        var lastname = $("#aLastName").val();
+        var streetaddress = $("#Street").val();
+        var username = $("#Username").val();
+        var phonenumber = $("#aPhoneNo").val();
+        var password = $("#aPassword").val();
+        var email = $("#aEmail").val();
+
+        var ferror = $('#aFirstNameError');
+        var lerror = $('#aLastNameError');
+        var serror = $('#StreetError');
+        var uerror = $('#UsernameError');
+        var perror = $('#aPhoneNoError');
+        var paerror = $('#aPasswordError');
+        var eerror = $('#aEmailError');
+
+       
+
+        
+        if (firstname === '') {
+            ferror.text('First Name is required');
+        }
+        if (lastname === '') {
+            lerror.text('Last Name is required');
+        }
+        if (streetaddress === '') {
+            serror.text('Street Address is required');
+        }
+        if (username === '') {
+            uerror.text('Username is required');
+        }
+        if (phonenumber === '') {
+            perror.text('Phone Number is required');
+        }
+        if (password === '') {
+            paerror.text('Password is required');
+        }
+        if (email === '') {
+            eerror.text('Email Address is required');
+        }
+
+        
+        if (ferror.text() !== '' || lerror.text() !== '' || serror.text() !== '' ||
+            uerror.text() !== '' || perror.text() !== '' || paerror.text() !== '' ||
+            eerror.text() !== '') {
+            return; 
+        }
+
+
+        $("form").submit();
+    });
+});
+
+
+
+
+
+</script>

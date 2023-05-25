@@ -1,4 +1,5 @@
 using demo.Services;
+using static demo.Services.UserServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

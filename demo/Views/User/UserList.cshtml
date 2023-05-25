@@ -37,8 +37,8 @@
                             <td>@item.Email</td>
                             <td>@item.Phone</td>
                             <td>@item.StreetAddress</td>
-                            <td>@item.City</td>
-                            <td>@item.State</td>
+                            <td>@item.CityId</td>
+                            <td>@item.StateId</td>
                             <td>@item.UserName</td>
                             <td>@item.Password</td>
 
@@ -52,3 +52,4 @@
     </table>
 </div>
  <a style="text-align: end;" onclick="return location.href='@Url.Action("UserAdd","User" )'"  class="nav-link align-middle px-0"><p>UserAdd</p></a>
+ <a style="text-align: end;" onclick="return location.href='@Url.Action("UserValidation","User" )'"  class="nav-link align-middle px-0"><p>UserValidate</p></a>

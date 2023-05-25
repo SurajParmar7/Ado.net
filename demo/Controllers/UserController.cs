@@ -1,6 +1,7 @@
 ﻿using demo.Models;
 using demo.Services;
 using Microsoft.AspNetCore.Mvc;
+using static demo.Services.UserServices;
 
 namespace demo.Controllers
 {
@@ -25,6 +26,12 @@ namespace demo.Controllers
         [HttpPost]
         public IActionResult AddUser(User user)
         {
+            var emailExist =_userService.CheckEmailAvailability(user.Email);
+            if (emailExist)
+            {
+                ModelState.AddModelError("email", "Already exsist");
+                return View("UserAdd");
+            }
             int i = _userService.SaveUser(user);
             if (i > 0)
             {
@@ -35,5 +42,25 @@ namespace demo.Controllers
                 return View();
             }
         }
+
+        public IActionResult listOfState()
+        {
+            IEnumerable<State> states = _userService.GetStateList();
+            return Json(states);
+        }
+        [HttpGet]
+        public IActionResult GetCities(int stateId)
+        {
+            
+            IEnumerable<City> cities = _userService.GetCityList(stateId);
+
+            return Json(cities);
+        }
+
+        public IActionResult UserValidation()
+        {
+            return View();
+        }
+
     }
 }

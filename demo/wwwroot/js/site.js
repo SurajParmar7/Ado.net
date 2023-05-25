@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function (e) {
+    $('#aEmail').on('keyup', function () {
+        var email = $(this).val();
+        var eerror = $('#aEmailError');
 
-// Write your JavaScript code.
+        if (email === '') {
+            eerror.text('Email address is required');
+        } else if (!validateEmail(email)) {
+            eerror.text('Invalid email address');
+        } else {
+            eerror.text('');
+        }
+    });
+
+    function validateEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+})
